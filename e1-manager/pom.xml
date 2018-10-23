@@ -18,7 +18,7 @@
 					<artifactId>tomcat7-maven-plugin</artifactId>
 				   <configuration>
 				   <path>/</path>
-				   <port>8080</port>
+				   <port>8081</port>
 				   
 				   </configuration>
 				</plugin>
@@ -31,6 +31,5 @@
   		<module>e1-manager-dao</module>
   		<module>e1-manager-interface</module>
   		<module>e1-manager-service</module>
-  		<module>e-manager-web</module>
   	</modules>
 </project>
