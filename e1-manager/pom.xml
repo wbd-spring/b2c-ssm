@@ -8,6 +8,15 @@
   <artifactId>e1-manager</artifactId>
   <packaging>pom</packaging>
   
+  <dependencies>
+  
+  <dependency>
+  
+   <groupId>com.wbd</groupId>
+    <artifactId>e1-common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  </dependencies>
    
   <!-- 配置Tomcat插件 -->
   	<build>

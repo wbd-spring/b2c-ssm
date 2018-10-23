@@ -1,3 +1,4 @@
+package com.wbd.service.test;
 import java.util.List;
 
 import org.junit.Test;
@@ -10,7 +11,7 @@ import com.wbd.mapper.TbItemMapper;
 import com.wbd.pojo.TbItem;
 import com.wbd.pojo.TbItemExample;
 
-public class T {
+public class TestPageHandler {
 
 	@Test
 	public void testPageHelper() throws Exception {
