@@ -30,5 +30,7 @@ public class T {
 		System.out.println(pageInfo.getPages());
 		System.out.println(pageInfo.getPageNum());
 		System.out.println(pageInfo.getPageSize());
+		
+		System.out.println(pageInfo.getPageSize());
 	}
 }
