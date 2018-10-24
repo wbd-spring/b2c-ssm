@@ -9,24 +9,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wbd.common.pojo.EasyUIDataGridResult;
 import com.wbd.pojo.TbItem;
 import com.wbd.service.ItemService;
-
+/**
+ * 
+ * 商品控制器
+* <p>Title: ItemController.java</p>  
+* <p>Description: </p>  
+* @author 朱光和 
+* @date 2018年10月24日
+ */
 @Controller
 public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
+	/**
+	 * 根据商品id查询商品信息
+	 * <p>Title: getItemById</p>  
+	 * <p>Description: </p>  
+	 * @param itemId
+	 * @return
+	 */
 	@RequestMapping("/item/{itemId}")
 	@ResponseBody
-	private TbItem getItemById(@PathVariable Long itemId) {
+	public TbItem getItemById(@PathVariable Long itemId) {
 		TbItem tbItem = itemService.getItemById(itemId);
 		return tbItem;
 	}
 	
+	/**
+	 * 分页查询
+	 * <p>Title: getItemList</p>  
+	 * <p>Description: </p>  
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
 	@RequestMapping("/item/list")
 	@ResponseBody
-	private EasyUIDataGridResult getItemList(Integer page,Integer rows) {
-		
-		System.out.println("tt");
+	public EasyUIDataGridResult getItemList(Integer page,Integer rows) {
+	
       return itemService.getItemList(page, rows);
 	}
 	

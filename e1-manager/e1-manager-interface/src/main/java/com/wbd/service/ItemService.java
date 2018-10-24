@@ -2,7 +2,13 @@ package com.wbd.service;
 
 import com.wbd.common.pojo.EasyUIDataGridResult;
 import com.wbd.pojo.TbItem;
-
+/**
+ * 商品
+* <p>Title: ItemService.java</p>  
+* <p>Description: </p>  
+* @author 朱光和 
+* @date 2018年10月24日
+ */
 public interface ItemService {
 
 	TbItem getItemById(long itemId);
@@ -21,5 +27,8 @@ public interface ItemService {
 	 * @return
 	 */
 	EasyUIDataGridResult getItemList(int page, int rows);
+	
+	
+	
 
 }

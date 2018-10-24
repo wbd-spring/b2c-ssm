@@ -26,4 +26,5 @@
 	<dubbo:application name="e-manager-web"/>
 	<dubbo:registry protocol="zookeeper" address="118.190.71.215:2181"/>	
 	<dubbo:reference interface="com.wbd.service.ItemService" id="itemService" />
+	<dubbo:reference interface="com.wbd.service.ItemCatService" id="itemCatService" />
 </beans>

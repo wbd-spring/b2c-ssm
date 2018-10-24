@@ -20,6 +20,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public TbItem getItemById(long itemId) {
+		System.out.println("hello world");
 		TbItem item = itemMapper.selectByPrimaryKey(itemId);
 		return item;
 	}
@@ -32,6 +33,7 @@ public class ItemServiceImpl implements ItemService {
 		//2.执行查询
 		TbItemExample example = new TbItemExample();
 		List<TbItem> list = itemMapper.selectByExample(example);
+		System.out.println(list.size()+"size:====");
 		//3.创建一个返回值对象
 		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
 		easyUIDataGridResult.setRows(list);
