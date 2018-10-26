@@ -22,6 +22,18 @@
 	</bean>
 	
 	
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:conf/resource.properties" />
+	
+	<!-- 定义文件上传解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设定默认编码 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
+	
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="e-manager-web"/>
 	<dubbo:registry protocol="zookeeper" address="118.190.71.215:2181"/>	
