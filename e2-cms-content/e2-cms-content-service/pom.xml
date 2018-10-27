@@ -4,29 +4,28 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.wbd</groupId>
-		<artifactId>e1-parent</artifactId>
+		<artifactId>e2-cms-content</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>e-manager-web</artifactId>
+	<artifactId>e2-cms-content-service</artifactId>
 	<packaging>war</packaging>
 
 	<dependencies>
-
-		
-
 		<dependency>
-
 			<groupId>com.wbd</groupId>
-			<artifactId>e1-manager-interface</artifactId>
+			<artifactId>e1-manager-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 
 			<groupId>com.wbd</groupId>
 			<artifactId>e2-cms-content-interface</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+
+
 
 		<!-- Spring -->
 		<dependency>
@@ -58,28 +57,9 @@
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
 
-		<!-- JSP相关 -->
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
 
-		<!-- Jackson Json处理工具包 -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
+
 
 		<!-- dubbo相关 -->
 		<dependency>
@@ -105,24 +85,13 @@
 			<artifactId>zkclient</artifactId>
 		</dependency>
 
-<!-- 文件上传 -->
-	<dependency>
-				<groupId>commons-fileupload</groupId>
-				<artifactId>commons-fileupload</artifactId>
-			</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
-	<!-- 配置tomcat插件 -->
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<configuration>
-					<path>/</path>
-					<port>8082</port>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

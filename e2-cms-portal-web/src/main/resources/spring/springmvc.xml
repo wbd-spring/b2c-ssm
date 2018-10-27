@@ -28,7 +28,9 @@
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="e2-cms-portal-web" />
 	
-	<dubbo:registry protocol="zookeeper"
-		address="118.190.71.215:2181" />
+	<dubbo:registry protocol="zookeeper" address="118.190.71.215:2181" />
+	   <!--  
+	   	<dubbo:reference interface="com.wbd.portal.service.ContentCategoryService" id="contentCategoryService" />
 	   
+	   -->
 </beans>

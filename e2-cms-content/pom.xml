@@ -7,4 +7,36 @@
   </parent>
   <artifactId>e2-cms-content</artifactId>
   <packaging>pom</packaging>
+  
+  <dependencies>
+  
+  <dependency>
+  
+   <groupId>com.wbd</groupId>
+    <artifactId>e1-common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  </dependencies>
+   
+  <!-- 配置Tomcat插件 -->
+  	<build>
+		<plugins>
+				<!-- 配置Tomcat插件 -->
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+				   <configuration>
+				   <path>/</path>
+				   <port>8084</port>
+				   
+				   </configuration>
+				</plugin>
+			</plugins>
+		
+	</build>
+  
+  	<modules>
+  		<module>e2-cms-content-interface</module>
+  		<module>e2-cms-content-service</module>
+  	</modules>
 </project>
