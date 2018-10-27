@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wbd.common.pojo.EasyUIDataGridResult;
+import com.wbd.common.utils.WBDResult;
 import com.wbd.pojo.TbItem;
 import com.wbd.service.ItemService;
 /**
@@ -51,5 +53,13 @@ public class ItemController {
       return itemService.getItemList(page, rows);
 	}
 	
+	/**
+	 * 商品添加功能
+	 */
+	@RequestMapping(value="/item/save", method=RequestMethod.POST)
+	@ResponseBody
+	public WBDResult addItem(TbItem item, String desc) {
+		return itemService.addItem(item, desc);
+	}
 	
 }

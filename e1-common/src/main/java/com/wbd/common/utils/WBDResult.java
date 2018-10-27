@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 * @author 朱光和 
 * @date 2018年10月26日
  */
-public class E3Result implements Serializable{
+public class WBDResult implements Serializable{
 
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -28,33 +28,33 @@ public class E3Result implements Serializable{
     // 响应中的数据
     private Object data;
 
-    public static E3Result build(Integer status, String msg, Object data) {
-        return new E3Result(status, msg, data);
+    public static WBDResult build(Integer status, String msg, Object data) {
+        return new WBDResult(status, msg, data);
     }
 
-    public static E3Result ok(Object data) {
-        return new E3Result(data);
+    public static WBDResult ok(Object data) {
+        return new WBDResult(data);
     }
 
-    public static E3Result ok() {
-        return new E3Result(null);
+    public static WBDResult ok() {
+        return new WBDResult(null);
     }
 
-    public E3Result() {
+    public WBDResult() {
 
     }
 
-    public static E3Result build(Integer status, String msg) {
-        return new E3Result(status, msg, null);
+    public static WBDResult build(Integer status, String msg) {
+        return new WBDResult(status, msg, null);
     }
 
-    public E3Result(Integer status, String msg, Object data) {
+    public WBDResult(Integer status, String msg, Object data) {
         this.status = status;
         this.msg = msg;
         this.data = data;
     }
 
-    public E3Result(Object data) {
+    public WBDResult(Object data) {
         this.status = 200;
         this.msg = "OK";
         this.data = data;
@@ -95,10 +95,10 @@ public class E3Result implements Serializable{
      * @param clazz 中的object类型
      * @return
      */
-    public static E3Result formatToPojo(String jsonData, Class<?> clazz) {
+    public static WBDResult formatToPojo(String jsonData, Class<?> clazz) {
         try {
             if (clazz == null) {
-                return MAPPER.readValue(jsonData, E3Result.class);
+                return MAPPER.readValue(jsonData, WBDResult.class);
             }
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");
@@ -122,9 +122,9 @@ public class E3Result implements Serializable{
      * @param json
      * @return
      */
-    public static E3Result format(String json) {
+    public static WBDResult format(String json) {
         try {
-            return MAPPER.readValue(json, E3Result.class);
+            return MAPPER.readValue(json, WBDResult.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,7 +138,7 @@ public class E3Result implements Serializable{
      * @param clazz 集合中的类型
      * @return
      */
-    public static E3Result formatToList(String jsonData, Class<?> clazz) {
+    public static WBDResult formatToList(String jsonData, Class<?> clazz) {
         try {
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");

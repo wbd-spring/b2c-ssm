@@ -1,6 +1,7 @@
 package com.wbd.service;
 
 import com.wbd.common.pojo.EasyUIDataGridResult;
+import com.wbd.common.utils.WBDResult;
 import com.wbd.pojo.TbItem;
 /**
  * 商品
@@ -28,7 +29,14 @@ public interface ItemService {
 	 */
 	EasyUIDataGridResult getItemList(int page, int rows);
 	
-	
-	
+	/**
+	 * 商品添加
+	 * <p>Title: addItem</p>  
+	 * <p>Description: </p>  
+	 * @param item
+	 * @param desc
+	 * @return
+	 */
+	public WBDResult  addItem(TbItem item,String desc);
 
 }
