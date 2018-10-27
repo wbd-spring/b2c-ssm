@@ -12,7 +12,7 @@
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
-    <where >
+    <where >  
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
@@ -103,6 +103,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wbd.pojo.TbContentCategory" >
+  <!--
+  
+   keyProperty表示返回的id放入到具体pojo的属性 ， 与pojo的id属性进行绑定，把返回的id放入到pojo中的id属性中
+  resultType 类似，表示mybaits别名类型，Long为mybaits内置别名，对应java中的Long类型
+  order 表示是执行语句之前返回id还是之后返回id，如果用uuid做主键， 我们应该在之前取的id，再插入。
+   -->
+  <selectKey keyProperty="id" resultType="Long" order="AFTER">
+  select last_insert_id()
+  </selectKey>
     insert into tb_content_category (id, parent_id, name, 
       status, sort_order, is_parent, 
       created, updated)
@@ -111,6 +120,10 @@
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.wbd.pojo.TbContentCategory" >
+  
+  <selectKey keyProperty="id" resultType="Long" order="AFTER">
+  select last_insert_id()
+  </selectKey>
     insert into tb_content_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
