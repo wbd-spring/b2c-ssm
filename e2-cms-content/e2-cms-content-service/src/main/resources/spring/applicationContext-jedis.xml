@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+	
+	<!-- applicationContext-dao.xml 已经加载了所有属性文件，
+	在spring容器中， 只能存在一个 property-placeholder ,所有让容器加载所有的属性文件
+	
+	<context:property-placeholder location="classpath:conf/jedis.properties" />
+	  -->
+	
+	
+	<!-- jedis 单机版本 采用连接池  -->
+	<bean id="jedisClient" class="com.wbd.common.jedis.JedisClientPool">
+	<property name="jedisPool" ref="jedisPool"></property>
+	</bean>
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+	<constructor-arg name="host" value="${redis.host}"/>
+	<constructor-arg name="port" value="${redis.port}"/>
+	</bean>
+	
+	<!-- jedis 集群版本 不能采集连接池
+	
+	<bean id="jedisClientCluster" class="com.wbd.common.jedis.JedisClientCluster">
+	<property name="jedisCluster" ref="jedisCluster"/>
+	</bean>
+	
+	<bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+	
+	
+   <constructor-arg name="node">
+   
+   <set>
+  
+   <bean class="redis.clients.jedis.HostAndPort">
+   <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+   <constructor-arg name="port" value="${redis.port}"></constructor-arg>
+   </bean>
+   
+    <bean class="redis.clients.jedis.HostAndPort">
+   <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+   <constructor-arg name="port" value="${redis.port}"></constructor-arg>
+   </bean>
+   
+    <bean class="redis.clients.jedis.HostAndPort">
+   <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+   <constructor-arg name="port" value="${redis.port}"></constructor-arg>
+   </bean>
+   
+    <bean class="redis.clients.jedis.HostAndPort">
+   <constructor-arg name="host" value="${redis.host}"></constructor-arg>
+   <constructor-arg name="port" value="${redis.port}"></constructor-arg>
+   </bean>
+   
+   </set>
+   
+   </constructor-arg>
+	
+	</bean>
+	
+	-->
+</beans>

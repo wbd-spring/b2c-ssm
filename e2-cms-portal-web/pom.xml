@@ -7,14 +7,12 @@
   </parent>
   <artifactId>e2-cms-portal-web</artifactId>
    <dependencies>
-		<!--  
-		<dependency>
+	<dependency>
 
 			<groupId>com.wbd</groupId>
-			<artifactId>e1-manager-interface</artifactId>
+			<artifactId>e2-cms-content-interface</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
--->
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

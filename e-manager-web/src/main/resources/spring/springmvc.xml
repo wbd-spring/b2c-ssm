@@ -40,5 +40,5 @@
 	<dubbo:reference interface="com.wbd.service.ItemService" id="itemService" />
 	<dubbo:reference interface="com.wbd.service.ItemCatService" id="itemCatService" />
     <dubbo:reference interface="com.wbd.portal.service.ContentCategoryService" id="contentCategoryService" />
-	
+	<dubbo:reference interface="com.wbd.portal.service.ContentService" id="contentService" />
 </beans>
