@@ -1,62 +1,54 @@
 package com.wbd.search.service.impl;
 
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wbd.common.pojo.SearchItem;
-import com.wbd.common.utils.WBDResult;
+import com.wbd.common.pojo.SearchResult;
 import com.wbd.search.service.SearchService;
-import com.wbd.search.service.mapper.ItemMapper;
-
+import com.wbd.search.service.dao.SearchDAO;
+/**
+ * 系统的搜索服务
+* <p>Title: SearchServiceImpl.java</p>  
+* <p>Description: </p>  
+* @author 朱光和 
+* @date 2018年10月30日
+ */
 @Service
 public class SearchServiceImpl implements SearchService {
-	
+
 	@Autowired
-	private ItemMapper itemMapper;
+	private SearchDAO  searchDAO;
 	
-	//注入(在spring文件中)一个SolrServer的子类， 因为SolrServer是抽象类
-	@Autowired
-	private SolrServer solrServer;
+	
 	
 	@Override
-	public WBDResult importAllItemInfo() {
-		try {
-			//1.查询商品信息
-			
-			List<SearchItem> itemList = itemMapper.getItemList();
-			
-			for (SearchItem searchItem : itemList) {
-			
-			// 创建文档对象
-				SolrInputDocument document = new SolrInputDocument();
-				
-				document.addField("id", searchItem.getId());
-				document.addField("item_title", searchItem.getTitle());
-				document.addField("item_sell_point", searchItem.getSell_point());
-				document.addField("item_price", searchItem.getPrice());
-				document.addField("item_image", searchItem.getImage());
-				document.addField("item_category_name", searchItem.getCategory_name());
-				
-			// 将文档添加到 solrserver
-				solrServer.add(document);
-			}
-			
-			// solrserver提交
-			
-			solrServer.commit();
-			
-			//2.把信息迭代添加到solr索引库中
-			return WBDResult.ok();
-		}  catch (IOException | SolrServerException e) {
-			e.printStackTrace();
-			return WBDResult.build(500, "solr导入数据出现异常");
-		}
+	public SearchResult search(String keyword, Integer page, Integer rows) {
+		
+		SolrQuery sq = new SolrQuery();
+		//1.设置查询内容
+		sq.setQuery(keyword);
+		//2.设置默认查询域
+		sq.set("df", "item_keywords");
+		
+		//3.设置分页查询条件
+		sq.setStart((page-1)*rows);
+		sq.setRows(rows);
+		
+		//4.高亮设置
+		sq.setHighlight(true);  //开启高亮
+		sq.addHighlightField("item_title"); //设置标题为高亮显示字段
+		sq.setHighlightSimplePre("<em>");
+		sq.setHighlightSimplePost("</em>");
+		
+		SearchResult search = searchDAO.search(sq);
+		
+		//5.计算总页数
+		long recourdCount = search.getRecourdCount(); //总记录数
+		long totalPages = recourdCount/rows;
+		if(totalPages % rows >0) totalPages++;
+		search.setTotalPages(totalPages);
+		return search;
 	}
 
 }
