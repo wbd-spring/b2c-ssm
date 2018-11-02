@@ -3,6 +3,7 @@ package com.wbd.service;
 import com.wbd.common.pojo.EasyUIDataGridResult;
 import com.wbd.common.utils.WBDResult;
 import com.wbd.pojo.TbItem;
+import com.wbd.pojo.TbItemDesc;
 /**
  * 商品
 * <p>Title: ItemService.java</p>  
@@ -12,7 +13,24 @@ import com.wbd.pojo.TbItem;
  */
 public interface ItemService {
 
+	/**
+	 * 根据商品id查询商品信息
+	 * <p>Title: getItemById</p>  
+	 * <p>Description: </p>  
+	 * @param itemId
+	 * @return
+	 */
 	TbItem getItemById(long itemId);
+	
+	
+	/**
+	 * 根据商品id查询商品描述信息
+	 * <p>Title: getItemDescById</p>  
+	 * <p>Description: </p>  
+	 * @param itemId
+	 * @return
+	 */
+	TbItemDesc getItemDescById(long itemId);
 
 	/**
 	 * 

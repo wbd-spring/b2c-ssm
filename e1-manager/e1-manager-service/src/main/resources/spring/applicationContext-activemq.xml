@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+<!-- 利用spring jmsTemplate来进行对消息中间件的管理，jmsTemplate实现了Activemq,RabbitMQ，kafala等等  -->
+
+	<!-- 配置具体的connectionFactory实现是采用的哪个消息中间件,我们才用Activemq -->
+	<bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+	   <property name="brokerURL" value="tcp://118.190.71.215:61616"/>
+	</bean>
+	
+	
+	<!-- 配置spring的管理的连接工厂 connectionFactory -->
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+	<!-- 指定spirng具体的连接目标工厂 -->
+	<property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+	</bean>
+	
+	<!-- 配置jmsTemplate 用来发消息， 而收消息不需要配置jmsTemplate，
+	消费者，需要配置监听器来接受消息。
+	
+	-->
+	
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	<!-- 指定连接工厂 -->
+	<property name="connectionFactory" ref="connectionFactory"/>
+	 </bean>
+	 
+	 <!-- 声明队列  点对点-->
+	 <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+	 
+	 <constructor-arg>
+	 <value>zgh-queue</value>
+	 </constructor-arg>
+	 </bean>
+	
+
+     <!-- 声明主题  发布与订阅模式，一对多-->
+     
+      <!-- 声明队列  点对点-->
+	 <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+	 
+	 <constructor-arg>
+	 <value>item-add-topic</value>
+	 </constructor-arg>
+	 </bean>
+	
+
+</beans>

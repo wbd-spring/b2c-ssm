@@ -26,6 +26,6 @@
 	<!-- 引用dubbo服务 -->
 	<dubbo:application name="e3-search-web"/>
 	<dubbo:registry protocol="zookeeper" address="118.190.71.215:2181"/>	
-	 <dubbo:reference interface="com.wbd.search.service.SearchService" id="com.wbd.search.service.searchService" />
+	 <dubbo:reference interface="com.wbd.search.service.SearchService" id="searchService" />
 
 </beans>

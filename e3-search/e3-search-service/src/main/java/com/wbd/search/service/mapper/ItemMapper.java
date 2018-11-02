@@ -21,4 +21,14 @@ public interface ItemMapper {
 	 * @return
 	 */
 	List<SearchItem> getItemList();
+	
+	/**
+	 * 根据商品id查询出 tbitem和tbitemdesc两个表的信息
+	 * <p>Title: getItemById</p>  
+	 * <p>Description: </p>  
+	 * @param itemId
+	 * @return
+	 */
+	SearchItem getItemById(long itemId);
+	
 }

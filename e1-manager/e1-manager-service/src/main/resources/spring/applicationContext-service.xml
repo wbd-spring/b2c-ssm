@@ -13,7 +13,24 @@
 <!-- 配置包扫描器 -->
 	<context:component-scan base-package="com.wbd.service"/>
 	
-	<!-- 使用dubbo发布服务 -->
+	<!-- 使用dubbo发布服务 
+	ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务。
+	分布式应用程序可以基于 ZooKeeper 实现诸如数据发布/订阅、负载均衡、命名服务、分布式协
+调/通知、集群管理、Master 选举、配置维护，名字服务、分布式同步、分布式锁和分布式队列
+等功能。
+   ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。
+   
+	1.zookeeper的作用一般有， 作为注册中心使用，命名服务， dubbo用zookeeper作为接口注册中心使用
+	2.管理集群， 一般集群时采用zookeeper来进行管理
+	
+	Zookeeper作为集群的管理工具。
+   1、集群管理：容错、负载均衡。
+   2、配置文件的集中管理
+   3、集群的入口
+
+需要实现zookeeper 高可用。需要搭建集群。建议是奇数节点。需要三个zookeeper服务器。
+	
+	-->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="e1-manager" />
 	<dubbo:registry protocol="zookeeper"

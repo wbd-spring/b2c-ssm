@@ -56,7 +56,16 @@ public class ContentServiceImpl implements ContentService {
 	 * 
 	 * 1.先去缓存中获取，取缓存中如果有异常，不能导致下面的业务也失败， 所以把对 缓存的操作
 	 * 放在try catch中
-	 * 2.如果缓存中没有，查询数据库，然后存入redis缓存中
+	 * 2.如果缓存中没有，查询数据库，然后存入redis缓存中 ,采用hashset， hashet的结构为
+	 * 
+	 * <key,Map<filed,value>>
+	 * 
+	 * Hash：key-fields-values（做缓存）
+相当于一个key对于一个map，map中还有key-value
+使用hash对key进行归类。
+Hset：向hash中添加内容
+Hget：从hash中取内容
+
 	   存入缓存中如果有异常，不能导致下面的业务也失败， 所以把对 缓存的操作
 	 * 放在try catch中
 	 * 
