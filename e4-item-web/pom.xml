@@ -1,21 +1,23 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.wbd</groupId>
-    <artifactId>e1-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>e4-item-web</artifactId>
-  <packaging>war</packaging>
-  <dependencies>
-  
-  <dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.wbd</groupId>
+		<artifactId>e1-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>e4-item-web</artifactId>
+	<packaging>war</packaging>
+	<dependencies>
+
+		<dependency>
 
 			<groupId>com.wbd</groupId>
 			<artifactId>e1-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	<dependency>
+		<dependency>
 
 			<groupId>com.wbd</groupId>
 			<artifactId>e1-manager-interface</artifactId>
@@ -99,6 +101,24 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+		
+			<!-- Activemq -->
+
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<!-- 配置tomcat插件 -->
@@ -114,5 +134,5 @@
 			</plugin>
 		</plugins>
 	</build>
-  
+
 </project>
