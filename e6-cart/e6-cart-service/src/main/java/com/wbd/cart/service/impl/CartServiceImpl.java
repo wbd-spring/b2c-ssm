@@ -80,10 +80,14 @@ public class CartServiceImpl implements CartService {
 	public WBDResult mergeCart(long userId, List<TbItem> cartList) {
 		
 		
-		if(cartList.size()>0) {
+		
 		for (TbItem tbItem : cartList) {
+			
+			System.out.println("userId=="+userId);
+			System.out.println("tbItem.getId()=="+tbItem.getId());
+			System.out.println("tbItem.getNum()=="+tbItem.getNum());
 			this.addCart(userId, tbItem.getId(), tbItem.getNum());
-		}
+		
 		
 		return WBDResult.ok();
 		}
@@ -134,6 +138,12 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public WBDResult deleteCart(long userId, long itemId) {
 		jedisClient.hdel(REDIS_CART_PRE+":"+userId, itemId+"");
+		return WBDResult.ok();
+	}
+
+	@Override
+	public WBDResult clearCart(long userId) {
+		jedisClient.del(REDIS_CART_PRE + ":" + userId);
 		return WBDResult.ok();
 	}
 

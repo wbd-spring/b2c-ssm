@@ -70,5 +70,14 @@ public interface CartService {
 	 * @return
 	 */
 	public WBDResult deleteCart(long userId,long itemId);
+	
+	/**
+	 * 根据用户id清除购物车
+	 * <p>Title: clearCart</p>  
+	 * <p>Description: </p>  
+	 * @param userId
+	 * @return
+	 */
+	public WBDResult clearCart(long userId);
 
 }

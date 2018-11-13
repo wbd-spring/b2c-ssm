@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,7 +45,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/page/login")
-	public String showLogin() {
+	public String showLogin(String redirect, Model model) {
+		//redirect用来 跳转到 之前进来的页面
+		model.addAttribute("redirect", redirect);
 		return "login";
 	}
 
